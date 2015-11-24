@@ -31,20 +31,8 @@
     <string name="result_failed">Scan failed</string>
     <string name="result_failed_why">don\'t know why</string>
 
-    <!-- zxing strings -->
-    <string name="flash">Flash</string>
-    <string name="flash_on">Flash On</string>
-    <string name="flash_off">Flash Off</string>
-    <string name="auto_focus">Autofocus</string>
-    <string name="auto_focus_on">Autofocus On</string>
-    <string name="auto_focus_off">Autofocus Off</string>
-    <string name="choose_formats">Choose Format</string>
-
-<!-- TODO: Remove or change this placeholder text -->
     <string name="about_text">This application gets book information from a Google API. All titles, cover images, and author information come from there.\n\n
     The original version of this app was built by Sascha Jaschke, and a modified version is given to students in the Udacity Android Nanodegree program.\n\n
     Additional functionality by Erik Reinecke.\n\n
     Barcode scanning implemented using zxing library </string>
-    <string name="select_camera">Select Camera</string>
-    <string name="formats">Scan format</string>
 </resources>

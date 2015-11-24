@@ -114,7 +114,7 @@ public class BookService extends IntentService {
                 urlConnection.connect();
             } catch (Exception e) {
                 Log.d(LOG_TAG, "Network connection error");
-                // TODO: Recover from this error gracefully
+                return;
             }
 
             InputStream inputStream = urlConnection.getInputStream();
