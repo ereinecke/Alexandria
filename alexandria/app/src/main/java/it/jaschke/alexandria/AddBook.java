@@ -10,6 +10,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.zxing.integration.android.IntentIntegrator;
 
 import it.jaschke.alexandria.data.AlexandriaContract;
 import it.jaschke.alexandria.services.BookService;
@@ -29,11 +31,12 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
     private static final String TAG = "INTENT_TO_SCAN_ACTIVITY";
     private EditText ean;
     private final int LOADER_ID = 1;
-    private View rootView;
+    private static View rootView;
     // TODO: why not not static?
-    private final String EAN_CONTENT="eanContent";
+    private final String EAN_CONTENT = "eanContent";
     private static final String SCAN_FORMAT = "scanFormat";
     private static final String SCAN_CONTENTS = "scanContents";
+    private static final String LOG_TAG = "AddBook: ";
 
     // TODO: make string resources?
     private String mScanFormat = "Format:";
@@ -92,19 +95,20 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
         rootView.findViewById(R.id.scan_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: here's where the scan functionality comes in
-                // This is the callback method that the system will invoke when your button is
-                // clicked. You might do this by launching another app or by including the
-                //functionality directly in this app.
-                // Hint: Use a Try/Catch block to handle the Intent dispatch gracefully, if you
-                // are using an external app.
-                //when you're done, remove the toast below.
+                // zxing is called here
                 Context context = getActivity();
-                CharSequence text = "This button should let you scan a book for its barcode!";
+                CharSequence text;
                 int duration = Toast.LENGTH_SHORT;
 
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
+                try {
+                    IntentIntegrator integrator = new IntentIntegrator(getActivity());
+                    integrator.initiateScan();
+                } catch (Exception e){
+                    Log.d(LOG_TAG,"Error scanning.");
+                    text = "Error scanning.";
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                }
 
             }
         });
@@ -200,6 +204,11 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
         rootView.findViewById(R.id.bookCover).setVisibility(View.INVISIBLE);
         rootView.findViewById(R.id.save_button).setVisibility(View.INVISIBLE);
         rootView.findViewById(R.id.delete_button).setVisibility(View.INVISIBLE);
+    }
+
+    public static void handleScanResult(String result) {
+        Log.d(LOG_TAG, "Scan result: " + result);
+        ((TextView) rootView.findViewById(R.id.ean)).setText(result);
     }
 
     @Override

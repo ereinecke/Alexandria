@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+
+    <item android:id="@+id/menu_flash"
+        android:title="@string/flash" />
+
+    <item android:id="@+id/menu_auto_focus"
+        android:title="@string/auto_focus" />
+
+    <item android:id="@+id/menu_formats"
+        android:title="@string/formats" />
+
+    <item android:id="@+id/menu_camera_selector"
+        android:title="@string/select_camera" />
+
+</menu>

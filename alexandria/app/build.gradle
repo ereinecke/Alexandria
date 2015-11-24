@@ -44,6 +44,8 @@ repositories {
 }
 
 dependencies {
+    compile 'me.dm7.barcodescanner:zxing:1.8.3'
+
     // Supports Android 4.0.3 and later (API level 15)
     compile 'com.journeyapps:zxing-android-embedded:2.0.1@aar'
 

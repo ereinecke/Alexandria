@@ -12,10 +12,14 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import it.jaschke.alexandria.api.Callback;
 
@@ -36,6 +40,8 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
     public static final String MESSAGE_EVENT = "MESSAGE_EVENT";
     public static final String MESSAGE_KEY = "MESSAGE_EXTRA";
+
+    public static final String LOG_TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +115,22 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             return true;
         }
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+        if (result != null) {
+            String contents = result.getContents();
+            if (contents != null) {
+                Log.d(LOG_TAG, "Scan result: " + result.toString());
+                // showDialog(R.string.result_succeeded, result.toString());
+                AddBook.handleScanResult(result.getContents().toString());
+            } else {
+                Log.d(LOG_TAG, "Scan failed");
+                // showDialog(R.string.result_failed, getString(R.string.result_failed_why));
+            }
+        }
     }
 
     @Override
