@@ -110,11 +110,17 @@ public class BookService extends IntentService {
 
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
-            urlConnection.connect();
+            try {
+                urlConnection.connect();
+            } catch (Exception e) {
+                Log.d(LOG_TAG, "Network connection error");
+                // TODO: Recover from this error gracefully
+            }
 
             InputStream inputStream = urlConnection.getInputStream();
             StringBuffer buffer = new StringBuffer();
             if (inputStream == null) {
+                Log.d(LOG_TAG, "Input buffer null");
                 return;
             }
 
@@ -162,7 +168,7 @@ public class BookService extends IntentService {
             JSONArray bookArray;
             if(bookJson.has(ITEMS)){
                 bookArray = bookJson.getJSONArray(ITEMS);
-            }else{
+            } else {
                 Intent messageIntent = new Intent(MainActivity.MESSAGE_EVENT);
                 messageIntent.putExtra(MainActivity.MESSAGE_KEY,getResources().getString(R.string.not_found));
                 LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(messageIntent);

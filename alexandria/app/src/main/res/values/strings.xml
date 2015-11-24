@@ -25,6 +25,8 @@
     <string name="back_button">go back</string>
     <string name="share_text">A must read book: </string>
 
+    <string name="no_internet">Internet connection is required to look up ISBN number</string>
+
     <string name="result_succeeded">Scan successful</string>
     <string name="result_failed">Scan failed</string>
     <string name="result_failed_why">don\'t know why</string>
@@ -39,8 +41,10 @@
     <string name="choose_formats">Choose Format</string>
 
 <!-- TODO: Remove or change this placeholder text -->
-    <string name="about_text">This application gets book information from a Google API. All titles, cover images, and author information come from there.
-    The original version of this app was built by Sascha Jaschke, and a modified version is given to students in the Udacity Android Nanodegree program. </string>
+    <string name="about_text">This application gets book information from a Google API. All titles, cover images, and author information come from there.\n\n
+    The original version of this app was built by Sascha Jaschke, and a modified version is given to students in the Udacity Android Nanodegree program.\n\n
+    Additional functionality by Erik Reinecke.\n\n
+    Barcode scanning implemented using zxing library </string>
     <string name="select_camera">Select Camera</string>
     <string name="formats">Scan format</string>
 </resources>
