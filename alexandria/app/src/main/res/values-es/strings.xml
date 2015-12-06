@@ -9,7 +9,7 @@
     <string name="books">Lista de libros</string>
     <string name="cancel_button">Cancelar</string>
     <string name="delete">Eliminar </string>
-    <string name="input_hint">Insertar código ISBN-13.</string>
+    <string name="input_hint">Insertar código ISBN-13, digitos solamente.</string>
     <string name="navigation_drawer_close">Cerrar cajón de navegación</string>
     <string name="navigation_drawer_open">Abrir cajón de navegación</string>
     <string name="no_internet">Buscar por ISBN requiere conexión de Internet.</string>

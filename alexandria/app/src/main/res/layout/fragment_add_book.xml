@@ -18,7 +18,7 @@
             android:layout_centerHorizontal="true">
 
             <EditText
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:minEms="@integer/ean_width"
@@ -29,13 +29,15 @@
                 android:hint="@string/input_hint"
                 android:paddingRight="20dp"
                 android:paddingEnd="20dp"
-                android:paddingLeft="20dp"/>
+                android:paddingLeft="20dp"
+                android:layout_weight="1" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/scan_button"
-                android:id="@+id/scan_button"/>
+                android:id="@+id/scan_button"
+                android:layout_gravity="right" />
 
         </LinearLayout>
 
