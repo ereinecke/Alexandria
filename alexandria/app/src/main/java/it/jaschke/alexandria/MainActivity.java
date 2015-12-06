@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity
         if(IS_TABLET){
             setContentView(R.layout.activity_main_tablet);
         }else {
-            setContentView(R.layout.activity_main);
+           setContentView(R.layout.activity_main);
         }
 
         messageReceiver = new MessageReceiver();
