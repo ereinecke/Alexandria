@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Alexandria</string>
+    <string name="about">Acerca de</string>
+    <string name="action_share">Compartir</string>
+    <string name="action_settings">Configuración</string>
+    <string name="back_button">Regresar</string>
+    <string name="book_cover">Portada del libro</string>
+    <string name="books">Lista de libros</string>
+    <string name="cancel_button">Cancelar</string>
+    <string name="delete">Eliminar </string>
+    <string name="input_hint">Insertar código ISBN-13.</string>
+    <string name="navigation_drawer_close">Cerrar cajón de navegación</string>
+    <string name="navigation_drawer_open">Abrir cajón de navegación</string>
+    <string name="no_internet">Buscar por ISBN requiere conexión de Internet.</string>
+    <string name="not_found">Libro no se encontró</string>
+    <string name="ok_button">Próximo</string>
+    <string name="pref_startScreen">Seleccionar pantalla de inicio</string>
+    <string name="result_failed">Escaneo falló</string>
+    <string name="result_failed_why">quien sabe porqué</string>
+    <string name="result_succeeded">Escaneo exitoso</string>
+    <string name="scan">Escanear/Añadir un Libro</string>
+    <string name="scan_button">Escanear</string>
+    <string name="search">Buscar</string>
+    <string name="share_text">Un libro que se tiene que leer:</string>
+    <string name="title_activity_settings">Configuración</string>
+    <string name="about_text">Esta aplicación obtiene los informes de libros de un API de Google.
+        Todos los datos, imágenes e información sobre el autor vienen de ahí.\n\n  La versión
+        original de esta aplicación fue programada por Sascha Jaschke, y una versión modificada
+        se da a los estudiantes tomando el curso de Android Nanodegree de Udacity.\n  Esta versión
+        incluye funcionalidad adicional por Erik Reinecke.\n\n  Escaneo de código de barras se
+        implementó usando la librería zxing.</string>
+</resources>

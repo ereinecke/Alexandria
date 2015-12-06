@@ -223,7 +223,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
         ((TextView) rootView.findViewById(R.id.ean)).setText(result);
     }
 
-    public boolean checkConnectivity() {
+    private boolean checkConnectivity() {
         // Check to see if internet connection available
         Context context = getActivity();
         CharSequence text;
