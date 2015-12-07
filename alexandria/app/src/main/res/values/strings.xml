@@ -11,7 +11,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
     <string name="scan_button">Scan</string>
-    <string name="input_hint">Insert ISBN-13. Digits only.</string>
+    <string name="input_hint">Insert ISBN-13, digits only.</string>
     <string name="book_cover">Bookcover</string>
 
     <string name="ok_button">Next</string>
@@ -23,7 +23,7 @@
     <string name="title_activity_settings">Settings</string>
     <string name="action_share">Share</string>
     <string name="back_button">go back</string>
-    <string name="share_text">A must read book: </string>
+    <string name="share_text">A must read book:\U0200</string>
 
     <string name="no_internet">Internet connection is required to look up ISBN number</string>
 

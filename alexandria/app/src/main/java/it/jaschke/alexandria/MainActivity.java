@@ -12,7 +12,6 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,6 +27,8 @@ import it.jaschke.alexandria.api.Callback;
 public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks, Callback {
 
+    public static final String LOG_TAG = MainActivity.class.getSimpleName();
+
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
@@ -37,27 +38,26 @@ public class MainActivity extends ActionBarActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence title;
-    public static boolean IS_TABLET = false;
+
+    public static boolean isTablet = false;
     private BroadcastReceiver messageReceiver;
 
     public static final String MESSAGE_EVENT = "MESSAGE_EVENT";
     public static final String MESSAGE_KEY = "MESSAGE_EXTRA";
 
-    public static final String LOG_TAG = MainActivity.class.getSimpleName();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        IS_TABLET = isTablet();
-        if(IS_TABLET){
+        isTablet = isTablet();
+        if (isTablet) {
             setContentView(R.layout.activity_main_tablet);
-        }else {
-           setContentView(R.layout.activity_main);
+        } else {
+            setContentView(R.layout.activity_main);
         }
 
         messageReceiver = new MessageReceiver();
         IntentFilter filter = new IntentFilter(MESSAGE_EVENT);
-        LocalBroadcastManager.getInstance(this).registerReceiver(messageReceiver,filter);
+        LocalBroadcastManager.getInstance(this).registerReceiver(messageReceiver, filter);
 
         navigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -75,7 +75,6 @@ public class MainActivity extends ActionBarActivity
         Fragment nextFragment;
 
         switch (position){
-            default:
             case 0:
                 nextFragment = new ListOfBooks();
                 break;
@@ -85,7 +84,8 @@ public class MainActivity extends ActionBarActivity
             case 2:
                 nextFragment = new About();
                 break;
-
+            default:
+                return;
         }
 
         fragmentManager.beginTransaction()
@@ -130,6 +130,7 @@ public class MainActivity extends ActionBarActivity
                 AddBook.handleScanResult(result.getContents().toString());
             } else {
                 Log.d(LOG_TAG, "Scan failed");
+                // Dialog badly constructed and redundant - scan error reported in AddBook
                 // showDialog(R.string.result_failed, getString(R.string.result_failed_why));
             }
         }
@@ -172,7 +173,6 @@ public class MainActivity extends ActionBarActivity
                 .replace(id, fragment)
                 .addToBackStack("Book Detail")
                 .commit();
-
     }
 
     private class MessageReceiver extends BroadcastReceiver {
@@ -184,7 +184,7 @@ public class MainActivity extends ActionBarActivity
         }
     }
 
-    public void goBack(View view){
+    public void goBack(View view) {
         getSupportFragmentManager().popBackStack();
     }
 
@@ -201,6 +201,4 @@ public class MainActivity extends ActionBarActivity
         }
         super.onBackPressed();
     }
-
-
 }

@@ -30,20 +30,13 @@ import it.jaschke.alexandria.services.DownloadImage;
 
 
 public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
-    private static final String TAG = "INTENT_TO_SCAN_ACTIVITY";
+
+    private static final String LOG_TAG = AddBook.class.getSimpleName();
+    private static final String EAN_CONTENT = "eanContent";
+    private static final int LOADER_ID = 1;
+
     private EditText ean;
-    private final int LOADER_ID = 1;
     private static View rootView;
-    // TODO: why not not static?
-    private final String EAN_CONTENT = "eanContent";
-    private static final String SCAN_FORMAT = "scanFormat";
-    private static final String SCAN_CONTENTS = "scanContents";
-    private static final String LOG_TAG = "AddBook: ";
-
-    // TODO: make string resources?
-    private String mScanFormat = "Format:";
-    private String mScanContents = "Contents:";
-
 
     public AddBook() {
     }
@@ -60,6 +53,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         rootView = inflater.inflate(R.layout.fragment_add_book, container, false);
+
         ean = (EditText) rootView.findViewById(R.id.ean);
 
         ean.addTextChangedListener(new TextWatcher() {
@@ -109,13 +103,11 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
                         IntentIntegrator integrator = new IntentIntegrator(getActivity());
                         integrator.initiateScan();
                     } catch (Exception e) {
-                        Log.d(LOG_TAG, "Error scanning.");
-                        text = "Error scanning.";
+                        text = getActivity().getString(R.string.result_failed);
                         Toast toast = Toast.makeText(context, text, duration);
                         toast.show();
                     }
                 }
-
             }
         });
 
@@ -139,7 +131,8 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
 
         if (savedInstanceState != null) {
             ean.setText(savedInstanceState.getString(EAN_CONTENT));
-            ean.setHint("");
+            // The next line clears the hint unnecessarily
+            // ean.setHint("");
         }
 
         return rootView;
@@ -155,6 +148,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
             return null;
         }
         String eanStr = ean.getText().toString();
+        // Convert EAN-10 to EAN-13.  Not sure if this will work forever, depends on ISBN standard
         if (eanStr.length() == 10 && !eanStr.startsWith("978")) {
             eanStr = "978" + eanStr;
         }
@@ -228,16 +222,20 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
         Context context = getActivity();
         CharSequence text;
         int duration = Toast.LENGTH_SHORT;
+        boolean isConnected;
 
         ConnectivityManager cm = (ConnectivityManager) context.
                 getSystemService(Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        boolean isConnected = activeNetwork != null &&
-                activeNetwork.isConnectedOrConnecting();
-
-        Toast toast = Toast.makeText(context, "No network connectivity", duration);
-        toast.show();
+        text = getString(R.string.no_internet);
+        if (activeNetwork != null && activeNetwork.isConnectedOrConnecting()) {
+            isConnected = true;
+        } else {
+            isConnected = false;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
 
         return isConnected;
     }

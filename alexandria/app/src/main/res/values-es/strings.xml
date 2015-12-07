@@ -22,7 +22,7 @@
     <string name="scan">Escanear/Añadir un Libro</string>
     <string name="scan_button">Escanear</string>
     <string name="search">Buscar</string>
-    <string name="share_text">Un libro que se tiene que leer:</string>
+    <string name="share_text">Un libro que se tiene que leer:\U0200</string>
     <string name="title_activity_settings">Configuración</string>
     <string name="about_text">Esta aplicación obtiene los informes de libros de un API de Google.
         Todos los datos, imágenes e información sobre el autor vienen de ahí.\n\n  La versión
