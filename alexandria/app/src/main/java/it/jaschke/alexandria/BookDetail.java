@@ -128,7 +128,7 @@ public class BookDetail extends Fragment implements LoaderManager.LoaderCallback
         }
 
         if(rootView.findViewById(R.id.right_container)!=null){
-            rootView.findViewById(R.id.backButton).setVisibility(View.INVISIBLE);
+            // rootView.findViewById(R.id.backButton).setVisibility(View.INVISIBLE);
         }
 
     }

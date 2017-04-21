@@ -77,7 +77,7 @@ public class BookService extends IntentService {
         }
 
         Cursor bookEntry = getContentResolver().query(
-                AlexandriaContract.BookEntry.buildBookUri(Long.parseLong(ean)),
+                AlexandriaContract.BookEntry.buildBookUri(Long.pcarseLong(ean)),
                 null, // leaving "columns" null just returns all the columns.
                 null, // cols for "where" clause
                 null, // values for "where" clause
